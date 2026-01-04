@@ -1,0 +1,17 @@
+
+
+MATCH (p:Person)
+WHERE p.salary >= 45000 AND p.salary <= 250000
+RETURN p.emp_id, p.salary
+ORDER BY p.salary
+
+
+
+MATCH (p:Person)-[:HELD_POSITION]->(pos:Position {position_id: '19'})
+RETURN DISTINCT p.emp_id;
+
+
+MATCH (p:Person)-[r:HELD_POSITION]->(:Position)
+WHERE r.from >= date('2012-01-01')
+  AND r.from <= date('2016-09-01')
+RETURN DISTINCT p.emp_id;
